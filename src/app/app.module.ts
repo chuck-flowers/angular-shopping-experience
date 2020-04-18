@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductBrowserComponent } from './product-browser/product-browser.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductBrowserComponent
+    ProductBrowserComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
