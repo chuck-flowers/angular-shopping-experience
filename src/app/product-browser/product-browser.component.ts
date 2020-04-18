@@ -8,8 +8,10 @@ import { ProductsService, Product } from '../products.service';
 })
 export class ProductBrowserComponent implements OnInit {
 
+  /** The collection of available products. */
   public products: Product[];
 
+  /** Creates a new product browser */
   constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
