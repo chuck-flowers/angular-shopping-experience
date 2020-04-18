@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 class Product {
-  name: string
+  name: string;
+  imageUrl: string;
 }
 
 @Component({
@@ -11,10 +12,11 @@ class Product {
 })
 export class ProductBrowserComponent implements OnInit {
 
-  products: Product[];
+  public products: Product[];
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log("ProductBrowserComponent.ngOnInit()");
   }
 }

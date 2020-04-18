@@ -1,0 +1,9 @@
+.product-card__name {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    text-align: center;
+}
+
+.product-card__image {
+    width: 100%;
+}
