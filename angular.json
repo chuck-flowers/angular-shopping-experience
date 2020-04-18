@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-shopping-experience"
+    }
+  },
+  "defaultProject": "angular-shopping-experience",
+  "cli": {
+    "analytics": "801af7a9-25dc-469e-a111-b9f3726995aa"
+  }
 }
