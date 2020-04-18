@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-class Product {
-  name: string;
-  imageUrl: string;
-}
+import { ProductsService, Product } from '../products.service';
 
 @Component({
   selector: 'app-product-browser',
@@ -14,9 +10,9 @@ export class ProductBrowserComponent implements OnInit {
 
   public products: Product[];
 
-  constructor() { }
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
-    console.log("ProductBrowserComponent.ngOnInit()");
+    this.products = this.productsService.getProducts();
   }
 }
