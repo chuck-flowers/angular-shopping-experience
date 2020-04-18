@@ -11,6 +11,8 @@ class Product {
 })
 export class ProductBrowserComponent implements OnInit {
 
+  products: Product[];
+
   constructor() { }
 
   ngOnInit(): void {
