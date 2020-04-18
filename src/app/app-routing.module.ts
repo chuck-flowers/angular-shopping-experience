@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductBrowserComponent } from './product-browser/product-browser.component';
 
 const routes: Routes = [
-  { path: '/', component: ProductBrowserComponent }
+  { path: '', component: ProductBrowserComponent }
 ];
 
 @NgModule({
