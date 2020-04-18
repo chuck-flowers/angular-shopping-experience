@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+class Product {
+  name: string
+}
+
 @Component({
   selector: 'app-product-browser',
   templateUrl: './product-browser.component.html',
@@ -11,5 +15,4 @@ export class ProductBrowserComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
