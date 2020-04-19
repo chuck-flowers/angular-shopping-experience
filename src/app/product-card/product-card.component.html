@@ -1,4 +1,4 @@
-<mat-card [matBadge]="cartItem?.quantity" [matBadgeHidden]="!isOrdered()">
+<mat-card [matBadge]="cartItem?.quantity" [matBadgeHidden]="!isOrdered()" matBadgeColor="accent">
     <!-- <img mat-card-image [src]="product.imageUrl"> -->
     <mat-card-title>{{ product.name }}</mat-card-title>
     <mat-card-subtitle>{{ product.price | currency }}</mat-card-subtitle>
