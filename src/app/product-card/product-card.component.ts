@@ -1,20 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CartService, CartItem } from '../cart.service';
+import { Product } from '../products.service';
 
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.css'],
-  inputs: ["name", "imageUrl"]
+  inputs: ['product']
 })
-export class ProductCardComponent implements OnInit {
+export class ProductCardComponent {
 
-  public name: string;
+  /** The product this card is created for. */
+  @Input() public product: Product;
 
-  public imageUrl: string;
+  /** The entry for this product in the cart. */
+  private cartItem?: CartItem = null;
 
-  constructor() { }
+  /** Constructs a new product card component. */
+  constructor(private cart: CartService) { }
 
-  ngOnInit(): void {
+  onIncrement(): void {
+    console.log("onIncrement()");
+    if (!this.cartItem) {
+      this.cartItem = this.cart.addItem(this.product);
+    } else {
+      this.cartItem.increment();
+    }
   }
 
+  onDecrement(): void {
+    console.log("onDecrement()");
+    this?.cartItem.decrement();
+  }
 }

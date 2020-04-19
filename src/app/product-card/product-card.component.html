@@ -1,14 +1,17 @@
 <div class="mdc-card">
     <div class="mdc-card__primary-action">
-        <div class="mdc-card__media mdc-card__media--square" [style.background-image]="'url(' + imageUrl + ')'"></div>
+        <div class="mdc-card__media mdc-card__media--square" [style.background-image]="'url(' + product.imageUrl + ')'">
+        </div>
         <div>
-            <h2 class="product-card__name">{{ name }}</h2>
+            <h2 class="product-card__name">{{ product.name }}</h2>
         </div>
     </div>
     <div class="mdc-card__actions">
         <div class="mdc-card__action-icons">
-            <button class="mdc-icon-button mdc-card__action--icon mdc-card__action--icon material-icons">add</button>
-            <button class="mdc-icon-button mdc-card__action--icon mdc-card__action--icon material-icons">remove</button>
+            <button class="mdc-icon-button mdc-card__action--icon mdc-card__action--icon material-icons"
+                (click)="onIncrement()">add</button>
+            <button class="mdc-icon-button mdc-card__action--icon mdc-card__action--icon material-icons"
+                (click)="onDecrement()">remove</button>
         </div>
     </div>
 </div>
