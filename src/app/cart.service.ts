@@ -26,7 +26,9 @@ export class CartItem {
   }
 
   public decrement() {
-    this._quantity--;
+    if (this.quantity > 0) {
+      this._quantity--;
+    }
   }
 }
 
