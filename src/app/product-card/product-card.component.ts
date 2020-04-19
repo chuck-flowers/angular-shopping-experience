@@ -11,10 +11,10 @@ import { Product } from '../products.service';
 export class ProductCardComponent {
 
   /** The product this card is created for. */
-  @Input() public product: Product;
+  public product: Product;
 
   /** The entry for this product in the cart. */
-  private cartItem?: CartItem = null;
+  public cartItem?: CartItem = null;
 
   /** Constructs a new product card component. */
   constructor(private cart: CartService) { }
@@ -31,5 +31,9 @@ export class ProductCardComponent {
   onDecrement(): void {
     console.log("onDecrement()");
     this?.cartItem.decrement();
+  }
+
+  isOrdered(): boolean {
+    return this.cartItem != null && this.cartItem.quantity > 0;
   }
 }

@@ -1,8 +1,8 @@
 .product-browser__card-grid {
     display: grid;
-    gap: 8px;
+    gap: 24px;
     grid-template-columns: repeat(3, 1fr);
-    padding: 4px;
+    padding: 24px;
 }
 
 @media screen and (min-width: 700px) {
