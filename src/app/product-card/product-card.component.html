@@ -1,6 +1,7 @@
 <mat-card [matBadge]="cartItem?.quantity" [matBadgeHidden]="!isOrdered()">
     <!-- <img mat-card-image [src]="product.imageUrl"> -->
     <mat-card-title>{{ product.name }}</mat-card-title>
+    <mat-card-subtitle>{{ product.price | currency }}</mat-card-subtitle>
     <mat-card-actions>
         <button mat-icon-button (click)="onIncrement()">
             <mat-icon>add</mat-icon>
