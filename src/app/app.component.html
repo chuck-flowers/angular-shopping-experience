@@ -1,16 +1,11 @@
-<header class=" mdc-top-app-bar">
-    <div class="mdc-top-app-bar__row">
-        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-            <span class="mdc-top-app-bar__title">Place Order</span>
-        </section>
-        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
-            <button class="mdc-button mdc-button--raised mdc-theme--secondary-bg">
-                <i class="material-icons mdc-buton__icon">shopping_cart</i>
-                <span class="mdc-button__label">{{ cartService.calculatePrice() | currency }}</span>
-            </button>
-        </section>
-    </div>
-</header>
-<div class="mdc-top-app-bar--fixed-adjust">
+<mat-toolbar color="primary">
+    <span>Place Order</span>
+    <span class="fill"></span>
+    <button mat-raised-button color="accent">
+        <mat-icon>shopping_cart</mat-icon>
+        <span>{{ cartService.calculatePrice() | currency }}</span>
+    </button>
+</mat-toolbar>
+<div>
     <router-outlet></router-outlet>
 </div>
