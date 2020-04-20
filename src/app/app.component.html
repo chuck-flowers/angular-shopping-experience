@@ -3,9 +3,13 @@
         <span>Fast Bytes</span>
         <span class="fill"></span>
     </mat-toolbar>
-    <div>
-        <router-outlet></router-outlet>
-    </div>
+    <mat-horizontal-stepper>
+        <mat-step label="Select">
+            <app-product-browser></app-product-browser>
+        </mat-step>
+        <mat-step label="Review"></mat-step>
+        <mat-step label="Pay"></mat-step>
+    </mat-horizontal-stepper>
     <mat-toolbar color="primary">
         <span class="fill"></span>
         <button mat-raised-button color="accent">
