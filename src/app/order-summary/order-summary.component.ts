@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { CartService, CartItem } from '../cart.service';
+import { MatTable } from '@angular/material/table';
 
 @Component({
   selector: 'app-order-summary',
   templateUrl: './order-summary.component.html',
   styleUrls: ['./order-summary.component.css']
 })
-export class OrderSummaryComponent implements OnInit {
+export class OrderSummaryComponent {
+  public readonly displayedColumns = [
+    'quantity',
+    'product',
+    'price',
+    'subtotal'
+  ];
 
-  constructor() { }
+  @ViewChild('summaryTable')
+  private summaryTable: MatTable<CartItem>;
 
-  ngOnInit(): void {
+  constructor(public cartService: CartService) {
+    cartService.contentObserver.subscribe(_ => this.summaryTable.renderRows());
   }
-
 }

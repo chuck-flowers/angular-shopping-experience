@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 
 /** Represents a purchasable product. */
 export class Product {
-  name: string;
-  price: number;
-  imageUrl: string;
+  public readonly name: string;
+  public readonly price: number;
+  public readonly imageUrl: string;
 }
 
 @Injectable({

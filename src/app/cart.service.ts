@@ -1,10 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Product } from './products.service';
+import { Observable, Subscriber } from 'rxjs';
 
 export class CartItem {
 
-  _product: Product;
-  _quantity: number;
+  private _product: Product;
+
+  private _quantity: number;
+  private quantitySubs: Subscriber<number>[] = [];
+  private observableQuantity: Observable<number> = new Observable(observer => {
+    const quantitySubs = this.quantitySubs;
+    quantitySubs.push(observer);
+    return {
+      unsubscribe() {
+        const subIndex = quantitySubs.indexOf(observer);
+        quantitySubs.splice(subIndex);
+      }
+    }
+  })
 
   constructor(product: Product, quantity: number) {
     this._product = product;
@@ -21,14 +34,34 @@ export class CartItem {
     return this._quantity;
   }
 
-  public increment() {
-    this._quantity++;
+  /** Property containing the observable quantity. */
+  public get quantityObserver(): Observable<number> {
+    return this.observableQuantity;
   }
 
+  private onQuantityChanged(): void {
+    console.log('CartItem.onQuantityChanged()');
+    this.quantitySubs.forEach(sub => sub.next(this.quantity));
+  }
+
+  /** Increments the number of this product type in the cart by 1 */
+  public increment(amount?: number) {
+    console.log('CartItem.increment(' + amount + ')');
+    this._quantity += amount ?? 1;
+    this.onQuantityChanged();
+  }
+
+  /** Decrements the number of this product type in the cart by 1 if possible. */
   public decrement() {
     if (this.quantity > 0) {
       this._quantity--;
+      this.onQuantityChanged();
     }
+  }
+
+  /** Calculates the cost of the specified quantity of the specified product. */
+  public calculatePrice(): number {
+    return this.product.price * this.quantity;
   }
 }
 
@@ -36,10 +69,35 @@ export class CartItem {
   providedIn: 'root'
 })
 export class CartService {
-  content: CartItem[] = [];
+  private _content: CartItem[] = [];
+
+  private contentSubs: Subscriber<CartItem[]>[] = [];
+  private observableContent: Observable<CartItem[]> = new Observable(observer => {
+    const contentSubs = this.contentSubs;
+    contentSubs.push(observer);
+    return {
+      unsubscribe() {
+        const subIndex = contentSubs.indexOf(observer);
+        contentSubs.splice(subIndex);
+      }
+    }
+  });
 
   /** Constructs a new cart service */
   constructor() { }
+
+  public get content(): CartItem[] {
+    return this._content;
+  }
+
+  public get contentObserver(): Observable<CartItem[]> {
+    return this.observableContent;
+  }
+
+  private onContentChanged(): void {
+    console.log('CartService.onContentChanged() - contentSubs.length = ' + this.contentSubs.length);
+    this.contentSubs.forEach(sub => sub.next(this._content));
+  }
 
   /** 
    * Adds a new item to the cart. 
@@ -48,19 +106,38 @@ export class CartService {
    * @param quantity The number of the given product which should be added to the cart.
   */
   public addItem(product: Product, quantity?: number): CartItem {
+
+    // Provide a default value for quantity if one was not provided.
     quantity = quantity ?? 1;
-    const item = new CartItem(product, quantity);
-    this.content.push(item);
+
+    // Find the existing cart item or create a new one.
+    let item = this._content.find(item => item.product == product);
+    if (item != null) {
+      item.increment(quantity);
+    } else {
+      // Create the new cart item.
+      item = new CartItem(product, quantity);
+
+      // Subscribe the item collection to its quantity observer.
+      item.quantityObserver.subscribe(_ => this.onContentChanged());
+
+      // Add the item to the content
+      this._content.push(item);
+    }
+
+    // Return the cart item
+    this.onContentChanged();
     return item;
   }
 
+  /** Determines if the cart contains any items. */
   public containsItems(): boolean {
-    return this.content.some(item => item.quantity > 0);
+    return this._content.some(item => item.quantity > 0);
   }
 
-  /** Calculates the value of the cart */
+  /** Calculates the price of the items in the cart */
   public calculatePrice(): number {
-    const subtotal = this.content
+    const subtotal = this._content
       .map(value => value.product.price * value.quantity)
       .reduce((prev, curr) => prev + curr, 0);
 

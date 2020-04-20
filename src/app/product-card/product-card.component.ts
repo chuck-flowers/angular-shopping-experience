@@ -21,7 +21,7 @@ export class ProductCardComponent {
 
   onIncrement(): void {
     console.log("onIncrement()");
-    if (!this.cartItem) {
+    if (this.cartItem == null) {
       this.cartItem = this.cart.addItem(this.product);
     } else {
       this.cartItem.increment();
