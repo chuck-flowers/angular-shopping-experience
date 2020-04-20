@@ -54,6 +54,10 @@ export class CartService {
     return item;
   }
 
+  public containsItems(): boolean {
+    return this.content.some(item => item.quantity > 0);
+  }
+
   /** Calculates the value of the cart */
   public calculatePrice(): number {
     const subtotal = this.content

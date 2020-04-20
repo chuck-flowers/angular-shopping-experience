@@ -11,12 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductBrowserComponent } from './product-browser/product-browser.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { OrderSummaryComponent } from './order-summary/order-summary.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductBrowserComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    OrderSummaryComponent
   ],
   imports: [
     AppRoutingModule,
