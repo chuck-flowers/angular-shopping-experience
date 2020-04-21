@@ -1,8 +1,14 @@
 .product-browser__card-grid {
     display: grid;
     gap: 24px;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 12px;
+}
+
+@media screen and (min-width: 500px) {
+    .product-browser__card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 @media screen and (min-width: 700px) {
