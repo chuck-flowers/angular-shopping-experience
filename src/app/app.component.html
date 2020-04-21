@@ -3,7 +3,7 @@
         <span>Fast Bytes</span>
     </mat-toolbar>
     <mat-vertical-stepper linear="true">
-        <mat-step label="Select">
+        <mat-step label="Select" [completed]="isSelectionMade()">
             <app-product-browser></app-product-browser>
             <div class="buttonFooter">
                 <span class="fill"></span>
