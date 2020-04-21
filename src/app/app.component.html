@@ -15,6 +15,13 @@
         </mat-step>
         <mat-step label="Review">
             <app-order-summary></app-order-summary>
+            <div class="buttonFooter">
+                <span class="fill"></span>
+                <button mat-raised-button matStepperNext color="accent">
+                    <mat-icon>attach_money</mat-icon>
+                    <span>Checkout</span>
+                </button>
+            </div>
         </mat-step>
         <mat-step label="Pay"></mat-step>
     </mat-vertical-stepper>
