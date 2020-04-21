@@ -2,7 +2,7 @@
     <mat-toolbar color="primary">
         <span>Fast Bytes</span>
     </mat-toolbar>
-    <mat-horizontal-stepper linear="true">
+    <mat-vertical-stepper linear="true">
         <mat-step label="Select">
             <app-product-browser></app-product-browser>
             <div class="buttonFooter">
@@ -17,5 +17,5 @@
             <app-order-summary></app-order-summary>
         </mat-step>
         <mat-step label="Pay"></mat-step>
-    </mat-horizontal-stepper>
+    </mat-vertical-stepper>
 </div>
